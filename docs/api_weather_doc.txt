@@ -11,12 +11,18 @@ https://services.meteored.com/web/forecast/graphics/v1/12996.json
 	- Retorna previsão de hj e dos próximos 3 dias
 
 
+Página para a previsão por hora no dia atual:
+https://www.tempo.com/sao-paulo-xhoras.htm
+
+
 Somente dia de hoje:
 https://services.meteored.com/web/forecast/cookie/v2/12996.json
 https://services.meteored.com/web/forecast/graphics/v1/12996.json
 
 
 Histórico:
+Página onde pode se buscar por data: https://www.tempo.com/sao-paulo-sactual.htm
+
 Pressão: https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=P&id_localidad=12996&anno=2023&mes=9&dia=2
 Temperatura: https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=T&id_localidad=12996&anno=2023&mes=9&dia=2
 Vento: https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=V&id_localidad=12996&anno=2023&mes=9&dia=2

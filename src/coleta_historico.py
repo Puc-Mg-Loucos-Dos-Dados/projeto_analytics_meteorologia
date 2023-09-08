@@ -59,7 +59,7 @@ class ColetaHistorico:
         self.url_pressao = f'{API_HISTORICO}?{param_estacao}&accion=P&{param_localidade}&anno={param_ano}&mes={param_mes}&dia={param_dia}'
         self.url_temperatura = f'{API_HISTORICO}?{param_estacao}&accion=T&{param_localidade}&anno={param_ano}&mes={param_mes}&dia={param_dia}'
         self.url_umidade = f'{API_HISTORICO}?{param_estacao}&accion=H&{param_localidade}&anno={param_ano}&mes={param_mes}&dia={param_dia}'
-        self.url_sol = f'{API_NASCER_POR_SOL}&lat={SAO_PAULO_LAT}&lng={SAO_PAULO_LONG}'
+        self.url_sol = f'{API_NASCER_POR_SOL}&lat={SAO_PAULO_LAT}&lng={SAO_PAULO_LONG}&date={param_ano}-{param_mes}-{param_dia}'
 
     def coleta_vento(self):
         pass
