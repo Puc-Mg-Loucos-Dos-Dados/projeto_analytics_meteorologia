@@ -1,0 +1,9 @@
+URL: https://api.sunrise-sunset.org/json?lat=-23.511298&lng=-46.629908
+
+São Paulo (Campo de Marte):
+	Lat: -23.511298
+	Long: -46.629908
+
+Rio de Janeiro (Lagoa Rodrigo de Freitas):
+	Lat: -22.980434
+	Long: -43.208106
