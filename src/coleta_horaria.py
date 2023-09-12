@@ -1,3 +1,6 @@
+import requests
+
+
 class ColetaHoraria:
 	def __init__(self):
 		pass
