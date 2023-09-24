@@ -1,7 +1,6 @@
 @startuml
 !include <aws/common>
 !include <aws/Compute/AWSLambda/AWSLambda>
-!include <aws/Database/AmazonDynamoDB/AmazonDynamoDB>
 
 !include <awslib/AWSCommon>
 !include <awslib/InternetOfThings/IoTRule>
@@ -17,6 +16,11 @@
 
 !include <elastic/endpoint/endpoint>
 
+!include <tupadr3/common>
+!include <tupadr3/devicons2/mongodb_wordmark>
+!include <tupadr3/font-awesome/server>
+!include <tupadr3/font-awesome/database>
+
 title "Arquitetura da Solucao"
 
 cloud {
@@ -25,7 +29,7 @@ cloud {
 
 cloud "AWS" {
 	AWSLAMBDA(collect_app, "Weather Collect Script")
-	AMAZONDYNAMODB(analytics_weather_db, "Weather DB")
+	DEV2_MONGODB_WORDMARK(analytics_weather_db, "Weather DW")
 
 	weather_api <-- collect_app
 	collect_app -> analytics_weather_db
