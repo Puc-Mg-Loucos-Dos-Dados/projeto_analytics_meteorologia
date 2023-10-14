@@ -14,7 +14,7 @@ else:
 
 class CollectHistory:
     # Para testes coloquei no começo do mês
-    inicio_periodo = datetime(2023, 9, 1, 0, 0, 0)
+    inicio_periodo = datetime(2023, 10, 13, 0, 0, 0)
     fim_periodo = None
 
     # Aqui vem as URLs das APIs a serem atualizadas durante todo o processo
@@ -39,8 +39,11 @@ class CollectHistory:
             # A cada rodada irei instanciar novamente os adapters pq irei trocar as URLs
             print(f'Coletando dia {dt_controle.strftime("%d/%m/%Y")}')
             wind_data = self.collect_wind(dt_controle)
+            print('\n')
             pressure_data = self.collect_pressure(dt_controle)
+            print('\n')
             humidity_data = self.collect_humidity(dt_controle)
+            print('\n')
             temperature_data = self.collect_temperature(dt_controle)
 
             dt_controle = dt_controle + timedelta(days=1)
@@ -52,6 +55,7 @@ class CollectHistory:
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.WIND)
         adapter = WeatherAdapter(url, dt)
         wind_data = adapter.get_data()
+        print(wind_data.to_json())
 
     def collect_temperature(self, dt: datetime):
         print('\t+ Coletando Temperatura')
@@ -65,6 +69,7 @@ class CollectHistory:
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.HUMIDITY)
         adapter = WeatherAdapter(url, dt)
         humidity_data = adapter.get_data()
+        print(humidity_data.to_json())
 
     def collect_pressure(self, dt: datetime):
         print('\t+ Coletando Pressão')

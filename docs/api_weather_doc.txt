@@ -23,9 +23,16 @@ https://services.meteored.com/web/forecast/graphics/v1/12996.json
 Histórico:
 Página onde pode se buscar por data: https://www.tempo.com/sao-paulo-sactual.htm
 
-Pressão: https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=P&id_localidad=12996&anno=2023&mes=9&dia=2
-Temperatura: https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=T&id_localidad=12996&anno=2023&mes=9&dia=2
-Vento: https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=V&id_localidad=12996&anno=2023&mes=9&dia=2
+Pressão:
+https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=P&id_localidad=12996&anno=2023&mes=9&dia=2
+
+Temperatura:
+https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=T&id_localidad=12996&anno=2023&mes=9&dia=2
+
+Vento:
+https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=V&id_localidad=12996&anno=2023&mes=9&dia=2
+
 Umidade: 
 https://www.tempo.com/peticiones/datosgrafica_sactual_16.php?id_estacion=571e07b8c76c49177837d4e1&accion=H&id_localidad=12996&anno=2023&mes=9&dia=2
+
 Resumo dia: https://www.tempo.com/peticiones/historico.php?id_estacion=571e07b8c76c49177837d4e1&accion=DIA&dia=1&mes=1&anno=2015
