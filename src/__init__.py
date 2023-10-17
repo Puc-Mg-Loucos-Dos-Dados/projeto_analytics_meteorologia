@@ -1,4 +1,4 @@
-from .adapter_apis import AdapterBase, WeatherAdapter
+from .adapters_apis import AdapterBase, WeatherAdapter
 from .api_models import Weather, Weather_Item
 
 
