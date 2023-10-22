@@ -93,6 +93,7 @@ with Session(engine) as session_1:
         )
         print('Usuário Anselmo não existe. Criando...')
         session_1.add(anselmo)
+        print(f'Anselmo ID 1: {anselmo.id}')
     else:
         print('Usuário Anselmo já existe no banco')
         print(f'\t- Anselmo possui {len(anselmo.phones)} telefones')
@@ -108,6 +109,9 @@ with Session(engine) as session_1:
         for ar in lista_anselmo_old:
             print(f'Apagando usuário {ar.id}')
             session_1.delete(ar)
+
+    print('Commit 1')
+    session_1.commit()
 
     print('Verificando se já existe usuário Jorge')
     stmt_j = select(User).filter_by(name='Jorge Lira')
@@ -135,6 +139,9 @@ with Session(engine) as session_1:
             print(f'Apagando usuário {jr.id}')
             session_1.delete(jr)
 
+    print('Commit 2')
+    session_1.commit()
+
     print('Criando telefone para usuário Anselmo')
     ta_1 = Telephone(country_code="55", local_code="11", number="96485-3026", user=anselmo)
     print('Criando telefone para usuário Jorge')
@@ -145,8 +152,10 @@ with Session(engine) as session_1:
     session_1.add(tj_1)
     # session.add_all([ta_1, tj_1])
 
-    print('Fazendo o commit das alterações')
+    print('Commit 3')
     session_1.commit()
+
+    print(f'Anselmo ID 2: {anselmo.id}')
 
 
 print('Abrindo conexão com o banco na forma 1 - Parte 2')

@@ -1,44 +1,48 @@
 @startuml
 entity "D_EstacaoAno" as d_ea {
-    *d_id : numeric <<generated>> <<PK>>
+    *id : numeric <<generated>> <<PK>>
     --
     nome_estacao : text
 }
 
 entity "D_Data" as d_dt {
-    *d_id : numeric <<generated>> <<PK>>
+    *id : numeric <<generated>> <<PK>>
     --
-    ano : numeric
-    mes : numeric
-    dia : numeric
+    data : date
+    dia_semana : text
+    --
+    criado_en : datetime
 }
 
 entity "D_Hora" as d_hr {
-    *d_id : numeric <<generated>> <<PK>>
+    *id : numeric <<generated>> <<PK>>
     *d_data : numeric <<PK>>
     --
-    hora : numeric
-    minuto : numeric
+    hora : time
+    --
+    criado_em : datetime
 }
 
 entity "D_DiaNoite" as d_dn {
-    *d_id : numeric <<generated>> <<PK>>
+    *id : numeric <<generated>> <<PK>>
     --
     momento_dia : text
 }
 
 entity "F_Tempo" as f_t {
-    *d_estacao_ano : numeric <<PK>>
-    *d_data : numeric <<PK>>
-    *d_hora : numeric <<PK>>
-    *d_dia_noite : numeric <<PK>>
+    *id : numeric <<PK>>
+    *d_estacao_ano : numeric <<FK>>
+    *d_data : numeric <<FK>>
+    *d_hora : numeric <<FK>>
+    *d_dia_noite : numeric <<FK>>
     --
     temperatura : numeric
     umidade : numeric
     pressao_atmosfetica : numeric
     visibilidade : numeric
+    vento : numeric
     --
-    hora_coleta : datetime
+    criado_em : datetime
 }
 
 d_ea ||--o{ f_t
