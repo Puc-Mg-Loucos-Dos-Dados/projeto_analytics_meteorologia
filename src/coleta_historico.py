@@ -74,14 +74,16 @@ class CollectHistory:
             self.medidas_dia_hora = {}
             # A cada rodada irei instanciar novamente os adapters pq irei trocar as URLs
             print(f'Coletando dia {dt_controle.strftime("%d/%m/%Y")}')
+            print('\t- Coletando dados de vento')
             wind_data = self.collect_wind(dt_controle)
-            print('\n')
+            print('\t- Coletando dados de pressão atmosférica')
             pressure_data = self.collect_pressure(dt_controle)
-            print('\n')
+            print('\t- Coletando dados de umidade relativa do ar')
             humidity_data = self.collect_humidity(dt_controle)
-            print('\n')
+            print('\t- Coletando dados de temperatura')
             temperature_data = self.collect_temperature(dt_controle)
 
+            print('\t- Agrupando os dados de um dia e salvando')
             self.process_save_day(
                 wind=wind_data,
                 pressure=pressure_data,
@@ -89,6 +91,7 @@ class CollectHistory:
                 temperature=temperature_data,
                 dt_controle=dt_controle)
 
+            print('\n')
             dt_controle = dt_controle + timedelta(days=1)
             if dt_controle.date() == self.fim_periodo.date():
                 continua = False
@@ -112,7 +115,7 @@ class CollectHistory:
                 ss.commit()
 
             for medida in lista_medidas:
-                # Processando wind
+                print(f'\t\t+ Processando {medida.measure}')
                 for v in medida.values:
                     hr_str = v.dt.time().strftime('%H:%M')
 
@@ -181,21 +184,18 @@ class CollectHistory:
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.WIND)
         adapter = WeatherAdapter(url, dt)
         wind_data = adapter.get_data()
-        print(wind_data.to_json())
 
     def collect_temperature(self, dt: datetime):
         print('\t+ Coletando Temperatura')
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.TEMPERATURE)
         adapter = WeatherAdapter(url, dt)
         temperature_data = adapter.get_data()
-        print(temperature_data.to_json())
 
     def collect_humidity(self, dt: datetime):
         print('\t+ Coletando Umidade')
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.HUMIDITY)
         adapter = WeatherAdapter(url, dt)
         humidity_data = adapter.get_data()
-        print(humidity_data.to_json())
 
     def collect_pressure(self, dt: datetime):
         print('\t+ Coletando Pressão')
