@@ -18,7 +18,7 @@ create table D_Hora(
     id_data int not null,
     hora time not null,
     criado_em datetime not null default CURRENT_TIMESTAMP,
-    foreign key (id_data) references D_Data(d_id) on update cascade on delete cascade
+    foreign key (id_data) references D_Data(id) on update cascade on delete cascade
 );
 
 create table D_DiaNoite(

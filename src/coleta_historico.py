@@ -43,10 +43,8 @@ class CollectHistory:
     db_name = 'analytics_weather_db'
 
     # Para testes coloquei no começo do mês
-    inicio_periodo = datetime(2023, 10, 13, 0, 0, 0)
+    inicio_periodo = datetime(2023, 10, 19, 0, 0, 0)
     fim_periodo = None
-
-    medidas_dia_hora = {}
 
     # Aqui vem as URLs das APIs a serem atualizadas durante todo o processo
     url_vento = None
@@ -56,13 +54,13 @@ class CollectHistory:
     url_sol = None
 
     def __init__(self):
-        print('Instanciando config')
-        self.cfg = Config()
-        print('Realizando a coleta')
-        self.collects()
         print('Criando conexão com o banco')
         self.engine = create_engine(f'mysql+pymysql://{self.db_user}:{self.db_psw}@{self.db_host}:{self.db_port}/{self.db_name}')
         self.medidas_dia_hora = {}
+        print('Instanciando config')
+        self.cfg = Config()
+        print('Realizando a coleta')
+        # self.collects()
 
     def collects(self):
         self.fim_periodo = datetime.now()
@@ -70,8 +68,6 @@ class CollectHistory:
         continua = True
 
         while continua:
-            # Zerando as medições do dia
-            self.medidas_dia_hora = {}
             # A cada rodada irei instanciar novamente os adapters pq irei trocar as URLs
             print(f'Coletando dia {dt_controle.strftime("%d/%m/%Y")}')
             print('\t- Coletando dados de vento')
@@ -131,16 +127,14 @@ class CollectHistory:
                                 hora=v.dt.time(),
                                 data=dt)
                             ss.add(hora)
-
-                        print('Persistindo hora, se necessário')
-                        ss.commit()
+                            print('Persistindo hora')
+                            ss.commit()
 
                         # Adicionando a hora como chave no dicionário
-                        if hr_str not in medidas_hora:
-                            medidas_hora[hr_str] = {
-                                'hora': hora,
-                                'medida': None
-                            }
+                        medidas_hora[hr_str] = {
+                            'hora': hora,
+                            'medida': None
+                        }
                     else:
                         hora = medidas_hora[hr_str]['hora']
 
@@ -169,6 +163,15 @@ class CollectHistory:
                             # Nem mexo, passo reto
                             medidas_hora[hr_str]['medida'] = None
                             continue
+                    else:
+                        if medida.measure == 'Umidade':
+                            medidas_hora[hr_str]['medida'].umidade = v.v
+                        elif medida.measure == 'Temperatura':
+                            medidas_hora[hr_str]['medida'].temperatura = v.v
+                        elif medida.measure == 'Pressão':
+                            medidas_hora[hr_str]['medida'].pressao_atmosferica = v.v
+                        elif medida.measure == 'Vento':
+                            medidas_hora[hr_str]['medida'].umidade = v.v
 
             # Só depois que capturo todas as medidas é que salvo no banco
             # Para não dar zica na linha 151
@@ -184,33 +187,28 @@ class CollectHistory:
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.WIND)
         adapter = WeatherAdapter(url, dt)
         wind_data = adapter.get_data()
+        return wind_data
 
     def collect_temperature(self, dt: datetime):
         print('\t+ Coletando Temperatura')
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.TEMPERATURE)
         adapter = WeatherAdapter(url, dt)
         temperature_data = adapter.get_data()
+        return temperature_data
 
     def collect_humidity(self, dt: datetime):
         print('\t+ Coletando Umidade')
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.HUMIDITY)
         adapter = WeatherAdapter(url, dt)
         humidity_data = adapter.get_data()
+        return humidity_data
 
     def collect_pressure(self, dt: datetime):
         print('\t+ Coletando Pressão')
         url = self.cfg.get_weather_url('sao_paulo', dt, Action.PRESSURE)
         adapter = WeatherAdapter(url, dt)
         pressure_data = adapter.get_data()
-
-    def collect_sunset_sunrise(self, dt: datetime):
-        headers = {}
-        response = requests.request('GET', self.url_sol, headers=headers)
-
-        if response.status_code != 200:
-            raise Exception(f'Ocorreu um erro de status {response.status_code}')
-
-        return response.json()
+        return pressure_data
 
 
 if __name__ == '__main__':
