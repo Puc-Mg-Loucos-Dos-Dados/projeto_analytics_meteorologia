@@ -1,0 +1,11 @@
+certifi==2023.7.22
+cffi==1.16.0
+charset-normalizer==3.2.0
+cryptography==41.0.4
+idna==3.4
+mysql-connector-python==8.1.0
+protobuf==4.21.12
+python-decouple==3.8
+requests==2.31.0
+sqlalchemy==2.0.22
+urllib==1.26.16

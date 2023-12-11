@@ -1,0 +1,21 @@
+@startuml
+class API_Response_Result {
+	sunrise: str
+	sunset : str
+	solar_noon : str
+	day_length : str
+	civil_twilight_begin : str
+	civil_twilight_end : str
+	nautical_twilight_begin : str
+	nautical_twilight_end : str
+	astronomical_twilight_begin : str
+	astronomical_twilight_end : str
+}
+
+class API_Response {
+	results : API_Response_Result
+	status : str
+}
+
+API_Response -- API_Response_Result
+@enduml
