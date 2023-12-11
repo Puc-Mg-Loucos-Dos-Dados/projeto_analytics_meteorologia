@@ -34,7 +34,7 @@ insert_query_data = """ -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dw_salao_de_beleza
 -- ------------------------------------------------------
--- Server version	8.0.34
+-- Server version   8.0.34
 
 --
 -- Table structure for table `d_agenda`
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS d_agenda;
 CREATE TABLE IF NOT EXISTS d_agenda (
     data_id DATE NOT NULL PRIMARY KEY,
     dia INT DEFAULT NULL,
-    UNIQUE(data_id)	
+    UNIQUE(data_id) 
 );
 
 -- Drop table if exists d_clima;
