@@ -1,6 +1,8 @@
+from datetime import datetime, timedelta
 import mysql.connector
 import pandas as pd
-from datetime import datetime, timedelta
+
+
 # Dados de acesso ao banco de dados
 user = 'admin'
 password = 'Samoht123.'
@@ -37,9 +39,9 @@ try:
             sql = 'INSERT INTO d_servico (nome, valor) VALUES (%s, %s)'
             values = (nome, valor)
             cursor.execute(sql, values)
+
     # Chamar a função para preencher a tabela
     preencher_tabela()
-
 except pd.errors.ParserError as e:
     with open('C:/Users/thoma/OneDrive/Área de Trabalho/salao - fios de luxo/Tratamento de dados/servicosDoEstabelecimento.csv', 'r') as file:
         lines = file.readlines()

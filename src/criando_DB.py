@@ -1,6 +1,7 @@
-import requests
-import mysql.connector
 from datetime import datetime, timedelta
+import mysql.connector
+import requests
+
 
 # Dados de acesso ao banco de dados
 user = 'admin'
@@ -16,9 +17,10 @@ db_connection = mysql.connector.connect(
     host=host,
     user=user,
     password=password,
-   #database=database,
+    #database=database,
     port=port
 )
+
 cursor = db_connection.cursor()
 
 create_database_query = "CREATE DATABASE IF NOT EXISTS dw_salao_de_beleza;"

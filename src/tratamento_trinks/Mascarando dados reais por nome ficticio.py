@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 ## O codigo abaixo serve para qualquer coluna que eu queira trocar o nome por outro
 ## O codigo foi aproveitado também agendamentos na coluna Cliente, onde alterei o nome verdadeiro por um iterador de Cliente + 1
 ## Codigo usado em agendamentos, coluna Profissionais

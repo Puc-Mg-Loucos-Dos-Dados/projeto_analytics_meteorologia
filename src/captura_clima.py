@@ -1,6 +1,7 @@
-import requests
-import mysql.connector
 from datetime import datetime, timedelta
+import mysql.connector
+import requests
+
 
 # Dados de acesso ao banco de dados
 user = 'admin'
@@ -15,6 +16,7 @@ API_KEY = "221f164d35f7154a527c7b3146fa2129"
 # Coordenadas de Salvador
 latitude = -12.9704
 longitude = -38.5124
+
 
 # Função para converter de Kelvin para Celsius
 def kelvin_para_celsius(temp_kelvin):

@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 # Carregar os arquivos CSV em dataframes do Pandas
 agendamentos = pd.read_csv('agendamentos_atualizado.csv', encoding='utf-8-sig', sep=';')
 clientes = pd.read_csv('servicosDoEstabelecimento.csv', encoding='utf-8-sig', sep=';')

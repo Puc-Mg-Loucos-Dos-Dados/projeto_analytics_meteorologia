@@ -1,6 +1,8 @@
+from datetime import datetime, timedelta
 import mysql.connector
 import pandas as pd
-from datetime import datetime, timedelta
+
+
 # Dados de acesso ao banco de dados
 user = 'admin'
 password = 'Samoht123.'
