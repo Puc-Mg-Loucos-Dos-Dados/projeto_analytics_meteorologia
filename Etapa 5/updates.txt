@@ -1,0 +1,32 @@
+
+---- mysql --- 
+ALTER TABLE d_clima
+ADD CONSTRAINT uc_dia UNIQUE (dia);
+
+ALTER TABLE d_agenda
+ADD CONSTRAINT uc_dia UNIQUE (data_id);
+
+codigo python, inserção de dados na tabela d_agenda e não permitir duplicar dados
+
+
+# Inserir ou atualizar os dados na tabela d_agenda
+insert_query_agenda = """ 
+	INSERT INTO d_agenda(data_id) 
+	VALUES (%s) 
+	ON DUPLICATE KEY UPDATE 
+	data_id = VALUES(data_id);
+"""
+data_insercao_agenda = (data_inicial.strftime('%Y-%m-%d'),)
+cursor.execute(insert_query_agenda, data_insercao_agenda)
+db_connection.commit()
+
+# Inserir ou atualizar os dados na tabela d_clima com a referência da tabela d_agenda
+insert_query_clima = """ 
+	INSERT INTO d_clima (temperatura_min, temperatura_max, temperatura_tarde, temperatura_noite, temperatura_manha, dia, data_atual) 
+	VALUES (%s, %s, %s, %s, %s, %s, %s) 
+	ON DUPLICATE KEY UPDATE 
+	dia = VALUES(dia);
+"""
+data_insercao_clima = (temperatura_min, temperatura_max, temperatura_tarde, temperatura_noite, temperatura_manha, data_inicial.strftime('%Y-%m-%d'), datetime.now().strftime('%Y-%m-%d'))
+cursor.execute(insert_query_clima, data_insercao_clima)
+db_connection.commit()
